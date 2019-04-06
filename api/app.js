@@ -1,13 +1,14 @@
 'use strict';
 
 // load modules
+const cors = require('cors');
+
 const express = require('express');
 const morgan = require('morgan');
 
 const routes = require('./routes.js');
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
-const cors = require('cors');
 
 // variable to enable global error logging
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true';
@@ -17,6 +18,7 @@ const app = express();
 
 // Cross-Origin Resource Sharing
 app.use(cors());
+app.options('*', cors());
 
 // Body Parser
 app.use(bodyParser.urlencoded({ extended: false }));
